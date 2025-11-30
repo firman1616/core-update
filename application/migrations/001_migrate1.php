@@ -74,6 +74,7 @@ class Migration_Migrate1 extends CI_Migration
             ['modul_id' => $modul_id, 'name' => 'Menu',  'url' => 'Menu'],
             ['modul_id' => $modul_id, 'name' => 'Role',  'url' => 'Role'],
             ['modul_id' => $modul_id, 'name' => 'User',  'url' => 'User'],
+            ['modul_id' => $modul_id, 'name' => 'Bagian',  'url' => 'Bagian'],
         ];
         $this->db->insert_batch('tbl_menu', $menus);
 
@@ -165,6 +166,11 @@ class Migration_Migrate1 extends CI_Migration
                 'type' => 'TEXT',
                 'unsigned' => TRUE
             ],
+             'bagian' => [
+                'type' => 'varchar',
+                'constraint' => '10',
+                'null' => FALSE
+            ],
         ]);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('tbl_user', TRUE);
@@ -175,7 +181,8 @@ class Migration_Migrate1 extends CI_Migration
             'password'   => password_hash('blackrock', PASSWORD_BCRYPT),
             'status'     => 1,
             'nik'        => '12345678',
-            'created_at' => date('Y-m-d H:i:s')
+            'created_at' => date('Y-m-d H:i:s'),
+            'bagian'     => 'ADM'
         ]);
         $user_id = $this->db->insert_id();
 
@@ -234,7 +241,7 @@ class Migration_Migrate1 extends CI_Migration
         $this->dbforge->create_table('tbl_user_menu_akses', TRUE);
 
         $dataUserMenu = [];
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $dataUserMenu[] = [
                 'user_id' => $user_id,
                 'menu_id' => $i,
