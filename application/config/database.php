@@ -29,12 +29,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '123',
-	'database' => 'sso',
+	'hostname' => '192.168.1.39',
+	'username' => 'admin',
+	'password' => 'admin123',
+	'database' => 'sso_LPJ',
 	'dbdriver' => 'postgre',
-	'port'	   => '5400',
+	// 'port'	   => '5432',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
