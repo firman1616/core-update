@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title><?= $title ?></title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="<?= base_url('') ?>assets/img/mmp_logo.ico" type="image/x-icon" />
+	<link rel="icon" href="#" type="image/x-icon" />
 
 	<!-- Fonts and icons -->
 	<script src="<?= base_url() ?>assets/template/assets/js/plugin/webfont/webfont.min.js"></script>
