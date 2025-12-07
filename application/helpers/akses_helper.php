@@ -10,27 +10,58 @@ function cek_akses($modul_id, $akses_id)
     return isset($role_akses[$modul_id]) && in_array($akses_id, $role_akses[$modul_id]);
 }
 
-function cek_menu_akses($modul_id, $menu_id, $akses_id)
+function cek_menu_akses($modul_id, $akses_id, $menu_id = null)
 {
     $CI = &get_instance();
     $CI->load->library('session');
 
-    $modul_akses = $CI->session->userdata('modul_akses');
+    $user_id = $CI->session->userdata('id_user') ?: $CI->session->userdata('id');
+    if (!$user_id) return false;
 
-    if (!$modul_akses) return false;
-
-    foreach ($modul_akses as $modul) {
-        if ($modul['id'] == $modul_id) {
-            foreach ($modul['menus'] as $menu) {
-                if ($menu['id'] == $menu_id && in_array($akses_id, $menu['akses'])) {
-                    return true;
-                }
-            }
-        }
+    // Jika modul TIDAK punya menu → cek langsung akses modul
+    if ($menu_id === null) {
+        $modul_akses = get_modul_akses_user(); // function existing
+        return isset($modul_akses[$modul_id]) && in_array($akses_id, $modul_akses[$modul_id]);
     }
 
-    return false;
+    // Jika modul punya menu → cek akses menu
+    $menu_akses = get_menu_akses_user($modul_id);
+    return isset($menu_akses[$menu_id]) && in_array($akses_id, $menu_akses[$menu_id]);
 }
+
+
+// function cek_menu_akses($modul_id, $menu_id, $akses_id)
+// {
+//     $CI = &get_instance();
+//     $CI->load->library('session');
+
+//     $modul_akses = $CI->session->userdata('modul_akses');
+
+//     if (!$modul_akses) return false;
+
+//     foreach ($modul_akses as $modul) {
+//         if ($modul['id'] == $modul_id) {
+//             foreach ($modul['menus'] as $menu) {
+//                 if ($menu['id'] == $menu_id && in_array($akses_id, $menu['akses'])) {
+//                     return true;
+//                 }
+//             }
+//         }
+//     }
+
+//     return false;
+// }
+
+// function cek_modul_akses($modul_id, $akses_id)
+// {
+//     $CI = &get_instance();
+//     $CI->load->library('session');
+
+//     $role_akses = $CI->session->userdata('role_akses');
+
+//     return isset($role_akses[$modul_id]) && in_array($akses_id, $role_akses[$modul_id]);
+// }
+
 
 function cek_approve_level($modul_id, $menu_id, $required_level)
 {
