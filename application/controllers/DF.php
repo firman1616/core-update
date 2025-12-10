@@ -24,14 +24,9 @@ class DF extends CI_Controller
 
     function tableDataForm()
     {
-        // $data['stuff'] = $this->stuff->get_data_stuffing()->result();
-        $canAdd = cek_menu_akses(3, 1); // modul, menu, akses jika tidak ada menu maka menu otomatis = null
-        $html = $this->load->view('data_form/data-form-table', [], TRUE);
+        // $data['bagian'] = $this->m_data->get_data('tbl_bagian')->result();
 
-        echo json_encode([
-            'html' => $html,
-            'canAdd' => $canAdd
-        ]);
+        echo json_encode($this->load->view('data_form/data-form-table',  false));
     }
 
     function store()

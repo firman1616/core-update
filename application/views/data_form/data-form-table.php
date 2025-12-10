@@ -1,3 +1,22 @@
+<style>
+    .dataTables_filter {
+        text-align: left !important;
+    }
+
+    .dataTables_filter label {
+        width: 100%;
+    }
+
+    .dataTables_filter input {
+        margin-left: 0 !important;
+    }
+
+    .dataTables_filter label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+</style>
 <table id="tableDataForm" class="display table table-striped table-hover">
     <thead>
         <tr>

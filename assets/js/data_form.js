@@ -82,54 +82,34 @@ $(document).ready(function () {
 // }
 
 function tableDataForm() {
-	$.ajax({
-		url: BASE_URL + "DF/tableDataForm",
-		type: "POST",
-		dataType: "json",
-		success: function (res) {
-			$("#div-table-data-form").html(res.html);
+    $.ajax({
+        url: BASE_URL + "DF/tableDataForm",
+        type: "POST",
+        success: function (data) {
+            $("#div-table-data-form").html(data);
 
-			let table = $("#tableDataForm").DataTable({
-				processing: true,
-				responsive: true,
-				destroy: true,
-				dom:
-					"<'row'<'col-md-6'f><'col-md-6 d-flex justify-content-end align-items-start'<'btn-group-custom'>>>" +
-					"<'row'<'col-sm-12'tr>>" +
-					"<'row'<'col-md-4'l><'col-md-4 text-center'i><'col-md-4'p>>",
-			});
+            let dt = $("#tableDataForm").DataTable({
+                processing: true,
+                responsive: true,
+                dom:
+                    "<'row'<'col-sm-6'f><'col-sm-6 text-right'<'toolbar'>>>" + // Search kiri, toolbar kanan
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
 
-			// Tambahkan button custom
-			if (res.canAdd) {
-				$(".btn-group-custom").html(`
-					<a href="#" 
-					class="btn btn-primary" 
-					id="btnTambahData">
-					<i class="fa fa-plus"></i> Tambah Data
-					</a>
-					<button type="button" class="btn btn-secondary" id="btnRefreshTable">
-						<i class="fa fa-sync"></i> Refresh
-					</button>
-				`);
-			}
+                initComplete: function () {
+                    // Tambahkan tombol ke dalam div .toolbar
+                    $("div.toolbar").html(`
+                        <button class="btn btn-primary" id="btnTambahData">
+                            <i class="fa fa-plus"></i> Tambah Data
+                        </button>
+                    `);
 
-			// Custom reposition
-			setTimeout(function () {
-				$(".dataTables_filter").css({
-					float: "left",
-					"text-align": "left",
-				});
-				$(".dataTables_length").css({
-					float: "left",
-					"text-align": "left",
-				});
-				$(".dataTables_info").css({
-					"text-align": "center",
-					float: "none",
-					margin: "0 auto",
-					display: "block",
-				});
-			}, 10);
-		},
-	});
+                    // Event tombol
+                    $("#btnTambahData").on("click", function () {
+                        tambahDataForm(); // panggil fungsi kamu
+                    });
+                },
+            });
+        },
+    });
 }
