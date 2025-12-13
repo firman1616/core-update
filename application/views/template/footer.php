@@ -1,10 +1,11 @@
 <footer class="footer">
-	<div class="container-fluid">
-		<div class="copyright ml-auto">
-			2025, made with </i> by <a href="https://www.themekita.com">IT PT. Mega Marine Pride</a>
-		</div>
-	</div>
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="copyright">
+            2025, made with by <a href="https://www.laprintjaya.com">IT PT. Laprint Jaya</a>
+        </div>
+    </div>
 </footer>
+
 </div>
 <!-- Custom template | don't include it in your project! -->
 <div class="custom-template">

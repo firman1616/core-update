@@ -82,34 +82,34 @@ $(document).ready(function () {
 // }
 
 function tableDataForm() {
-    $.ajax({
-        url: BASE_URL + "DF/tableDataForm",
-        type: "POST",
-        success: function (data) {
-            $("#div-table-data-form").html(data);
+	$.ajax({
+		url: BASE_URL + "DF/tableDataForm",
+		type: "POST",
+		success: function (data) {
+			$("#div-table-data-form").html(data);
 
-            let dt = $("#tableDataForm").DataTable({
-                processing: true,
-                responsive: true,
-                dom:
-                    "<'row'<'col-sm-6'f><'col-sm-6 text-right'<'toolbar'>>>" + // Search kiri, toolbar kanan
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
+			let dt = $("#tableDataForm").DataTable({
+				processing: true,
+				responsive: true,
+				dom:
+					"<'row'<'col-sm-6'f><'col-sm-6 text-right'<'toolbar'>>>" + // Search kiri, toolbar kanan
+					"<'row'<'col-sm-12'tr>>" +
+					"<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
 
-                initComplete: function () {
-                    // Tambahkan tombol ke dalam div .toolbar
-                    $("div.toolbar").html(`
-                        <button class="btn btn-primary" id="btnTambahData">
-                            <i class="fa fa-plus"></i> Tambah Data
-                        </button>
+				initComplete: function () {
+					// Tambahkan tombol ke dalam div .toolbar
+					$("div.toolbar").html(`
+                        <a href="` + BASE_URL + `DF/vtambah" class="btn btn-primary">
+							<i class="fa fa-plus"></i> Tambah Data
+						</a>
                     `);
 
-                    // Event tombol
-                    $("#btnTambahData").on("click", function () {
-                        tambahDataForm(); // panggil fungsi kamu
-                    });
-                },
-            });
-        },
-    });
+					// Event tombol
+					$("#btnTambahData").on("click", function () {
+						tambahDataForm(); // panggil fungsi kamu
+					});
+				},
+			});
+		},
+	});
 }

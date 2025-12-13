@@ -10,6 +10,7 @@ class DF extends CI_Controller
         if (!$this->session->userdata('logged_in')) {
             redirect('login');
         }
+        $this->load->model('M_df','df');
     }
 
     public function index()
@@ -27,6 +28,16 @@ class DF extends CI_Controller
         // $data['bagian'] = $this->m_data->get_data('tbl_bagian')->result();
 
         echo json_encode($this->load->view('data_form/data-form-table',  false));
+    }
+
+    function vtambah() {
+         $data = [
+            'title' => 'Tambah Data Form',
+            'conten' => 'data_form/tambah-data',
+            'footer_js' => array('assets/js/data_form.js'),
+            'kd_df' => $this->df->generate_kode_df()
+        ];
+        $this->load->view('template/conten', $data);
     }
 
     function store()
