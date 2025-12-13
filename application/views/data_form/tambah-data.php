@@ -1,3 +1,24 @@
+<style>
+    /* Samakan tinggi Select2 dengan input Bootstrap */
+    .select2-container--default .select2-selection--single {
+        height: 38px;
+        /* default Bootstrap form-control */
+        padding: 6px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    /* Tengahin teks */
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 24px;
+    }
+
+    /* Samakan posisi icon dropdown */
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 36px;
+    }
+</style>
+
 <div class="content">
     <div class="page-inner">
         <div class="page-header">
@@ -14,21 +35,20 @@
                         <div class="form-group">
                             <label for="email2">Tanggal Data Form</label>
                             <input type="date" class="form-control" id="tgl_df" name="tgl_df" value="<?= date('Y-m-d'); ?>">
+                            <input type="hidden" value="<?= $kd_df ?>">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="email2">Nama Sales</label>
-                            <select name="sales" id="sales" class="form-control">
-                                <option value="">Nama Sales</option>
-                            </select>
+                            <input type="text" class="form-control" id="sales" name="sales" readonly value="<?= $sales ?>">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="email2">Customer</label>
-                            <select name="customer" id="customer" class="form-control">
-                                <option value="">Customer</option>
+                            <label>Customer</label>
+                            <select name="customer" id="customer" class="form-control" style="width:100%">
+                                <option value="">Pilih Customer</option>
                             </select>
                         </div>
                     </div>
@@ -37,9 +57,10 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="email2">Produk Kategori</label>
-                            <select name="prod_kategori" id="prod_kategori" class="form-control">
-                                <option value="">Nama Sales</option>
+                            <select name="product_type" id="product_type" class="form-control" style="width:100%">
+                                <option value="">Pilih Product Type</option>
                             </select>
+
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -101,6 +122,8 @@
                         </div>
                     </div>
                 </div>
+
+                <button type="button" class="btn btn-primary" id="simpan-data"><i class="fa fa-save"></i> | Simpan Data</button>
             </div>
         </div>
     </div>

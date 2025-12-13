@@ -50,25 +50,26 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-// $db['acts'] = array(
-// 	'dsn'	=> '',
-// 	'hostname' => '192.168.10.108',
-// 	'username' => 'it',
-// 	'password' => 'kabelangka8',
-// 	'database' => 'acts',
-// 	'dbdriver' => 'mysqli',
-// 	'port'	   => '3307',
-// 	'dbprefix' => '',
-// 	'pconnect' => FALSE,
-// 	'db_debug' => (ENVIRONMENT !== 'production'),
-// 	'cache_on' => FALSE,
-// 	'cachedir' => '',
-// 	'char_set' => 'utf8',
-// 	'dbcollat' => 'utf8_general_ci',
-// 	'swap_pre' => '',
-// 	'encrypt' => FALSE,
-// 	'compress' => FALSE,
-// 	'stricton' => FALSE,
-// 	'failover' => array(),
-// 	'save_queries' => TRUE
-// );
+$db['odoo'] = array(
+	'dsn'	=> '',
+	'hostname' => '192.168.1.15',
+	'username' => 'adminerp',
+	'password' => '4dm1n2018',
+	'database' => 'DB_LPJ01',
+	'dbdriver' => 'postgre',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+

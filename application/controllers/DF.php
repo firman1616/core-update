@@ -10,7 +10,8 @@ class DF extends CI_Controller
         if (!$this->session->userdata('logged_in')) {
             redirect('login');
         }
-        $this->load->model('M_df','df');
+        $this->load->model('M_df', 'df');
+        $this->load->model('M_ERP', 'erp');
     }
 
     public function index()
@@ -30,15 +31,52 @@ class DF extends CI_Controller
         echo json_encode($this->load->view('data_form/data-form-table',  false));
     }
 
-    function vtambah() {
-         $data = [
+    function vtambah()
+    {
+        $data = [
             'title' => 'Tambah Data Form',
             'conten' => 'data_form/tambah-data',
             'footer_js' => array('assets/js/data_form.js'),
-            'kd_df' => $this->df->generate_kode_df()
+            'kd_df' => $this->df->generate_kode_df(),
+            'sales'     => $this->session->userdata('name'),
         ];
         $this->load->view('template/conten', $data);
     }
+
+    public function get_customer_odoo()
+    {
+        $search = $this->input->get('term'); // HARUS term
+
+        $data = $this->erp->get_customer_odoo($search);
+
+        $result = [];
+        foreach ($data as $row) {
+            $result[] = [
+                'id'   => $row['id'],
+                'text' => $row['name']
+            ];
+        }
+
+        echo json_encode($result);
+    }
+
+    public function get_product_type_precost()
+    {
+        $search = $this->input->get('term'); // WAJIB term
+
+        $data = $this->erp->get_product_type_precost($search);
+
+        $result = [];
+        foreach ($data as $row) {
+            $result[] = [
+                'id'   => $row['id'],
+                'text' => $row['name']
+            ];
+        }
+
+        echo json_encode($result);
+    }
+
 
     function store()
     {
